@@ -1,6 +1,6 @@
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
-from .models import Priority, TicketStatus
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from .models import Priority, Role, TicketStatus
 
 class ORM(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -25,3 +25,24 @@ class TicketOut(ORM):
     status: TicketStatus
     created_at: datetime
     author: AuthorOut
+
+class RegisterIn(BaseModel):
+    name: str = Field(min_length=1, max_length=100)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=72)
+
+class LoginIn(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserOut(ORM):
+    id: int
+    name: str
+    email: str
+    role: Role
+    is_active: bool
+
+class TokenOut(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserOut
