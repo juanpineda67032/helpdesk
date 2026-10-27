@@ -8,7 +8,7 @@ from .config import settings
 from .database import Base, SessionLocal, engine
 from .models import Role, User
 from .security import hash_password
-from .routers import auth, tickets  # <-- Agregamos auth aquí
+from .routers import auth, tickets, users  # <-- Agregamos users aquí
 
 def init_db():
     for _ in range(10):
@@ -45,6 +45,7 @@ def health():
     return {"status": "ok"}
 
 api = APIRouter(prefix="/api")
-api.include_router(auth.router)     # <-- Agregamos el router de auth
+api.include_router(auth.router)
 api.include_router(tickets.router)
+api.include_router(users.router)  # <-- Conectamos el router de usuarios
 app.include_router(api)

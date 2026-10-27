@@ -46,3 +46,7 @@ class TokenOut(BaseModel):
     access_token: str
     token_type: str = "bearer"
     user: UserOut
+    
+class UserUpdate(BaseModel):
+    role: Role | None = None
+    is_active: bool | None = None
