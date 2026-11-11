@@ -55,4 +55,11 @@ export class Tickets {
   remove(t: Ticket) {
     this.tickets.update((list) => list.filter((x) => x.id !== t.id));
   }
+
+  // ESTA ES LA FUNCIÓN NUEVA
+  close(t: Ticket) {
+    this.tickets.update((list) =>
+      list.map((x) => (x.id === t.id ? { ...x, status: 'closed' } : x))
+    );
+  }
 }

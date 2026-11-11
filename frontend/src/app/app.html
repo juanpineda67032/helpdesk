@@ -1,8 +1,10 @@
 <header>
   <a class="brand" href="/">{{ appName }}</a>
   <nav>
-    <a href="/tickets">Tickets</a>
-    <a href="/users">Usuarios</a>
+    <nav>
+  <a routerLink="/tickets" routerLinkActive="active">Tickets</a>
+  <a routerLink="/users" routerLinkActive="active">Usuarios</a>
+</nav>
   </nav>
   <div class="session">
     <span>Invitado</span>
@@ -12,7 +14,8 @@
 <main>
   <router-outlet />
   <main>
+  <main>
   <router-outlet />
-  <app-tickets />
+</main>
 </main>
 </main>
